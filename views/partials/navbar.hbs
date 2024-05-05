@@ -1,0 +1,43 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {{#if isAuthenticated}}
+                <a class="navbar-brand" href="/user/dashboard">Dashboard</a>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/product/all">All Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/orders/all">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout">Log Out</a>
+                </li>
+                {{else}}
+                <a class="navbar-brand" href="/product/index">Flower Market</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/registration" style="display: none;">Register</a>
+                </li>
+                {{/if}}
+            </ul>
+
+            {{#if isAuthenticated}}
+            <form class="d-flex">
+                <button class="btn btn-outline-secondary">
+                    <a class="add" href="/product/add" style="text-decoration: none; color: black"
+                        onmouseover="this.style.color='white';" onmouseout="this.style.color='black';">Add product</a>
+                </button>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+</nav>

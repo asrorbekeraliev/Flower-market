@@ -1,0 +1,28 @@
+<div class="container mt-5" style="margin-bottom: 80px;">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            {{#if errorMessage}}
+            <div class="mb-3">
+                <p style="color: red;">{{errorMessage}}</p>
+            </div>
+            {{/if}}
+            <form action="/product/update/{{productId}}" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Enter the product title</label>
+                    <input class="form-control" type="text" name="title" id="title" value="{{productTitle}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Enter the product description</label>
+                    <textarea class="form-control" id="description" name="description" rows="4" >{{productDescription}}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Enter the product amount</label>
+                    <input class="form-control" type="number" min="1" id="amount" name="amount" value="{{productAmount}}"></input>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

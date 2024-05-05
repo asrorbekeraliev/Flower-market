@@ -1,0 +1,91 @@
+<script>
+    // Check if status exists
+    if ({{ status }}) {
+        // Display alert
+        var alertMessage = 'Your order has been recorded successfully !';
+        var alertElement = document.createElement('div');
+        alertElement.className = 'alert alert-danger';
+        alertElement.textContent = alertMessage;
+        document.body.appendChild(alertElement);
+
+        // Remove the alert after 3 seconds
+        setTimeout(function () {
+            // Apply fade-out effect
+            alertElement.style.opacity = '0';
+            // Remove the alert from DOM after the transition
+            setTimeout(function () {
+                alertElement.parentNode.removeChild(alertElement);
+            }, 500); // Adjust to match transition duration
+        }, 3000);
+    }
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="card mb-5 mt-5">
+                <div class="card-body">
+                    {{#if errorMessage}}
+                    {{errorMessage}}
+                    {{/if}}
+                   
+                    {{!-- {{#if status}}
+                    <div class="alert alert-danger" role="alert">
+                        Your order has been recorded successfully !
+                    </div>
+                    {{/if}} --}}
+
+                    <div class="list-group mb-1">
+                        <h5 class="card-title">{{productTitle}}</h5>
+                        </a>
+                    </div>
+                    <div class="list-group mb-1">
+                        <h6 class="card-title" style="color: brown;">Only {{productAmount}} products left </h6>
+                        </a>
+                    </div>
+                    <p class="card-text">{{productDescription}}</p>
+                    <p class="card-text"><small class="text-muted">{{productUpdatedAt}}</small></p>
+
+                </div>
+                <img src="{{productImageUrl}}" class="card-img-bottom" alt="...">
+                {{!-- <div class="card-footer" align="center">
+                    <a href="#" type="button" class="btn btn-success">Order</a>
+                </div> --}}
+                {{#if isAuthenticated}}
+                <div class="text-center card-footer">
+                    <a class="btn btn-outline-dark mt-auto" style="width: 100px;"
+                        href="/product/update/{{productId}}">UPDATE</a>
+                </div>
+                {{else}}
+                <div class="text-center card-footer">
+                    <a class="btn btn-outline-dark mt-auto" style="width: 100px;"
+                        href="/product/order/{{productId}}">ORDER</a>
+                </div>
+                {{/if}}
+            </div>
+            {{#if errorMessage}}
+            <p style="color: red;">{{errorMessage}}</p>
+            {{/if}}
+            <form action="/product/comment/{{productId}}" method="post" style="margin-bottom: 50px;">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Enter your email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                    <label for="comment" class="form-label">Write a comment</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {{#each comments}}
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-body">
+                    <div class="list-group mb-1">
+                        <h6 class="card-title">{{email}}</h6>
+                    </div>
+                    <p class="card-text">{{text}}</p>
+                    <p class="card-text"><small class="text-muted">{{updatedAt}}</small></p>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>

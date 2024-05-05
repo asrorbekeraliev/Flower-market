@@ -1,0 +1,54 @@
+<table class="table" style="margin-bottom: 150px; margin-top: 30px">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Region</th>
+      <th scope="col">Product Title</th>
+      <th scope="col" style="width: 15%; text-align: center;">Action</th>
+      <th scope="col" style="text-align: center;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{full_name}}</td>
+      <td>{{phone}}</td>
+      <td>{{region}}</td>
+      <td>{{product.title}}</td>
+      <td>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form action="/product/order/action/{{id}}" method="post">
+                <input type="hidden" name="action" value="sold">
+                <input type="hidden" name="productId" value="{{product.id}}">
+                <button type="submit" class="btn btn-primary" style="width: 80px;">Sell</button>
+              </form>
+            </div>
+            <div class="col">
+              <form action="/product/order/action/{{id}}" method="post">
+                <input type="hidden" name="action" value="cancelled">
+                <input type="hidden" name="productId" value="{{product.id}}">
+                <button type="submit" class="btn btn-danger" style="width: 80px;">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <td style="display: flex; justify-content: center; align-items: center;">
+        {{#compare status 'sold'}}
+        <img width="48" height="48" src="https://img.icons8.com/color/48/ok--v1.png" alt="ok--v1" />
+        {{/compare}}
+        {{#compare status 'cancelled'}}
+        <img width="48" height="48" src="https://img.icons8.com/color/48/cancel--v1.png" alt="cancel--v1" />
+        {{/compare}}
+        {{#compare status 'pending'}}
+        <img width="50" height="50" src="https://img.icons8.com/bubbles/50/hourglass.png" alt="hourglass"/>
+        {{/compare}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

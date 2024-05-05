@@ -1,0 +1,37 @@
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <form action="/product/add" enctype="multipart/form-data" method="post">
+                        {{#if errorMessage}}
+                        <div class="alert alert-danger" role="alert">
+                            {{errorMessage}}
+                        </div>
+                        {{/if}}
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Enter the product title</label>
+                            <input class="form-control" type="text" name="title" id="title">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Enter the product description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Enter the product amount</label>
+                            <input class="form-control" type="number" min="1" id="amount" name="amount"></input>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imageUrl" class="form-label">Enter the product image</label>
+                            <input class="form-control" type="file" name="imageUrl" id="imageUrl">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
